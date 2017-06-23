@@ -1,0 +1,37 @@
+<form action="<%= users_path @user %>" method="POST">
+  <% @user.errors.full_messages.each do |message| %>
+    <output><%= message %></output>
+  <% end %>
+
+  <label>
+    Email
+    <input type="email" name="user[email]" value="<%= @user.email %>">
+  </label>
+
+  <label>
+    Password
+    <input type="password" name="user[password]" value="<%= @user.password %>">
+  </label>
+
+  <label>
+    Confirm Password
+    <input type="password" name="user[password_confirmation]" value="<%= @user.password_confirmation %>">
+  </label>
+
+  <label>
+    Username
+    <input type="text" name="user[username]" value="<%= @user.username %>">
+  </label>
+
+  <label>
+    Name
+    <input type="text" name="user[name]" value="<%= @user.name %>">
+  </label>
+
+  <button type="submit">Create</button>
+
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+</form>
+
+<%= form_for @user do %>
+<% end %>
