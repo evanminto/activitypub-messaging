@@ -1,0 +1,14 @@
+<form action="<%= messages_path %>" method="POST">
+  <% @message.errors.full_messages.each do |message| %>
+    <output><%= message %></output>
+  <% end %>
+
+  <label>
+    Content
+    <textarea name="message[content]"><%= @message.content %></textarea>
+  </label>
+
+  <button type="submit">Create</button>
+
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+</form>

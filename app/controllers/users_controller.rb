@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:show, :new, :create]
+  before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update]
 
   def new
@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.active = true
+    @user.approved = true
+    @user.confirmed = true
     if @user.save
       flash[:notice] = "Account registered!"
       UserSession.create @user
@@ -18,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find params[:id]
+    @user = User.find_by(username: params[:id]) || User.find(params[:id])
   end
 
   def user_params

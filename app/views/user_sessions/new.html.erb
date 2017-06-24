@@ -1,6 +1,10 @@
 <h1>Login</h1>
 
-<form action="<%= user_session_path @user_session %>" method="POST">
+<form action="<%= user_sessions_path %>" method="POST">
+  <% @user_session.errors.full_messages.each do |message| %>
+    <output><%= message %></output>
+  <% end %>
+
   <label>
     Email
     <input type="email" name="user_session[email]" value="<%= @user_session.email %>">
@@ -12,4 +16,6 @@
   </label>
 
   <button type="submit">Log In</button>
+
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 </form>

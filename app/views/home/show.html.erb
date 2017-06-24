@@ -1,0 +1,21 @@
+<h1><%= @current_user.username %></h1>
+
+<ol reversed>
+  <% @current_user.sent_messages.reverse.each do |message| %>
+    <li>
+      <article>
+        <p>
+          <%= message.content %>
+        </p>
+
+        <footer>
+          <address>
+            <a href="<%= user_path(@current_user.username) %>" rel="author"><%= @current_user.username %></a>
+          </address>
+
+          <time datetime="<%= message.updated_at.iso8601 %>"><%= message.updated_at.strftime '%b %d, %Y' %></time>
+        </footer>
+      </article>
+    </li>
+  <% end %>
+</ol>

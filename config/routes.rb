@@ -54,7 +54,9 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  root controller: "users", action: "new"
+  root controller: 'users', action: 'new'
   resources :user_sessions
   resources :users
+  resources :messages
+  get 'home', controller: 'home', action: 'show'
 end
