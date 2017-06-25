@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:id]) || User.find(params[:id])
+
+    respond_to :html, :json
   end
 
   def user_params
