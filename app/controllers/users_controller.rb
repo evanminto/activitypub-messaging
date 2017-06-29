@@ -4,26 +4,21 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.account = Account.new
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new user_params
     @user.active = true
     @user.approved = true
     @user.confirmed = true
     if @user.save
       flash[:notice] = "Account registered!"
       UserSession.create @user
-      redirect_back_or_default user_path(@user)
+      redirect_to home_path
     else
       render :action => :new
     end
-  end
-
-  def show
-    @user = User.find_by(username: params[:id]) || User.find(params[:id])
-
-    respond_to :html, :json
   end
 
   def user_params
@@ -31,8 +26,10 @@ class UsersController < ApplicationController
       :email,
       :password,
       :password_confirmation,
-      :username,
-      :name
+      account_attributes: [
+        :username,
+        :display_name
+      ]
     )
   end
 end

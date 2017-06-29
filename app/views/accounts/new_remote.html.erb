@@ -1,0 +1,14 @@
+<form action="<%= add_accounts_path %>" method="post">
+  <% @errors.each do |message| %>
+    <output><%= message %></output>
+  <% end %>
+
+  <label>
+    URL
+    <input type="url" name="url" value="<%= @url %>">
+  </label>
+
+  <button type="submit">Find</button>
+
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+</form>

@@ -1,21 +1,44 @@
-<h1><%= @current_user.username %></h1>
+<h1><%= @current_user.account.username %></h1>
 
-<ol reversed>
-  <% @current_user.sent_messages.reverse.each do |message| %>
-    <li>
-      <article>
-        <p>
-          <%= message.content %>
-        </p>
+<section>
+  <h2>All Known Accounts</h2>
 
-        <footer>
-          <address>
-            <a href="<%= user_path(@current_user.username) %>" rel="author"><%= @current_user.username %></a>
-          </address>
+  <ul>
+    <% @accounts.each do |account| %>
+      <li>
+        <%= account.username %>
+        <small>
+          <% if account.user %>
+            (local)
+          <% else %>
+            (remote)
+          <% end %>
+        </small>
+      </li>
+    <% end %>
+  </ul>
+</section>
 
-          <time datetime="<%= message.updated_at.iso8601 %>"><%= message.updated_at.strftime '%b %d, %Y' %></time>
-        </footer>
-      </article>
-    </li>
-  <% end %>
-</ol>
+<section>
+  <h2>Messages</h2>
+
+  <ol reversed>
+    <% @current_user.account.sent_messages.reverse.each do |message| %>
+      <li>
+        <article>
+          <p>
+            <%= message.content %>
+          </p>
+
+          <footer>
+            <address>
+              <a href="<%= account_path(message.account.username) %>" rel="author"><%= message.account.username %></a>
+            </address>
+
+            <time datetime="<%= message.updated_at.iso8601 %>"><%= message.updated_at.strftime '%b %d, %Y' %></time>
+          </footer>
+        </article>
+      </li>
+    <% end %>
+  </ol>
+</section>

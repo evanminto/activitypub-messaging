@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  display_name: MyString
+  activitystreams2_url: MyString
+  profile_url: MyString
+  user_id: 
+
+two:
+  username: MyString
+  display_name: MyString
+  activitystreams2_url: MyString
+  profile_url: MyString
+  user_id: 

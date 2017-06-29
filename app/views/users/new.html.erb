@@ -20,12 +20,12 @@
 
   <label>
     Username
-    <input type="text" name="user[username]" value="<%= @user.username %>">
+    <input type="text" name="user[account_attributes][username]" value="<%= @user.account.username %>">
   </label>
 
   <label>
-    Name
-    <input type="text" name="user[name]" value="<%= @user.name %>">
+    Display Name
+    <input type="text" name="user[account_attributes][display_name]" value="<%= @user.account.display_name %>">
   </label>
 
   <button type="submit">Create</button>

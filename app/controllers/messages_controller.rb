@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    @message.user = @current_user
+    @message.account = @current_user.account
     if @message.save
       flash[:notice] = "Message sent!"
       redirect_to home_path

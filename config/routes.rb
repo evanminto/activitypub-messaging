@@ -57,6 +57,13 @@ Rails.application.routes.draw do
   root controller: 'users', action: 'new'
   resources :user_sessions
   resources :users
+
+  resources :accounts do
+    collection do
+      get 'find', action: 'new_remote'
+      post 'add', action: 'create_remote'
+    end
+  end
   resources :messages
   get 'home', controller: 'home', action: 'show'
 end
