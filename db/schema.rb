@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627073344) do
+ActiveRecord::Schema.define(version: 20170629074714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20170627073344) do
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
+
+  create_table "message_addressees", force: true do |t|
+    t.integer  "message_id"
+    t.integer  "account_id"
+    t.string   "target_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "message_addressees", ["account_id"], name: "index_message_addressees_on_account_id", using: :btree
+  add_index "message_addressees", ["message_id"], name: "index_message_addressees_on_message_id", using: :btree
 
   create_table "messages", force: true do |t|
     t.string   "content"
@@ -57,10 +68,5 @@ ActiveRecord::Schema.define(version: 20170627073344) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
-  add_index "users", ["perishable_token"], name: "index_users_on_perishable_token", using: :btree
-  add_index "users", ["persistence_token"], name: "index_users_on_persistence_token", using: :btree
-  add_index "users", ["single_access_token"], name: "index_users_on_single_access_token", using: :btree
 
 end

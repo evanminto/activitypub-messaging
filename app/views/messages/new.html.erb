@@ -4,6 +4,12 @@
   <% end %>
 
   <label>
+    To
+    <input name="message[addressees_attributes][][url]" type="url">
+    <input name="message[addressees_attributes][][target_type]" value="to" type="hidden">
+  </label>
+
+  <label>
     Content
     <textarea name="message[content]"><%= @message.content %></textarea>
   </label>

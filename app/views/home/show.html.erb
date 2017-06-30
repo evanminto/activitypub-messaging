@@ -26,6 +26,16 @@
     <% @current_user.account.sent_messages.reverse.each do |message| %>
       <li>
         <article>
+          <header>
+            <ul>
+              <% message.addressees.each do |addressee| %>
+                <li>
+                  <%= addressee.target_type.capitalize %>: <a href="<%= addressee.account.profile_url %>"><%= addressee.account.username %></a>
+                </li>
+              <% end %>
+            </ul>
+          </header>
+
           <p>
             <%= message.content %>
           </p>
